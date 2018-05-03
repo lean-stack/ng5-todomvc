@@ -1,5 +1,5 @@
 <section class="todoapp">
-  <todos-header></todos-header>
+  <todos-header (create)="createTodo($event)"></todos-header>
   <todos-main [state]="state"></todos-main>
   <todos-footer [state]="state"></todos-footer>
 </section>

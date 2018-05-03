@@ -14,6 +14,8 @@ export class RootComponent implements OnInit {
 
   public state: State;
 
+  private lastId = 0;
+
   // Methods to trigger from template
   doNotNavigate(ev: MouseEvent) {
     ev.preventDefault();
@@ -24,17 +26,14 @@ export class RootComponent implements OnInit {
 
   ngOnInit() {
     this.state = new State();
-    this.state.todos = [
-      {
-        id: 1,
-        title: 'TypeScript',
-        completed: true
-      },
-      {
-        id: 2,
-        title: 'Bindings',
-        completed: false
-      }
-    ];
+  }
+
+
+  createTodo(title: string) {
+    this.state.todos.push({
+      id: ++this.lastId,
+      title: title,
+      completed: false
+    });
   }
 }
