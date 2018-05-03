@@ -8,6 +8,7 @@ import { MainComponent } from './main/main.component';
 import { FooterComponent } from './footer/footer.component';
 import { ListComponent } from './list/list.component';
 import { ItemComponent } from './item/item.component';
+import { LocalStoreService } from './service/local-store.service';
 
 @NgModule({
   imports: [
@@ -24,6 +25,9 @@ import { ItemComponent } from './item/item.component';
   ],
   exports: [
     RootComponent
+  ],
+  providers: [
+    LocalStoreService
   ]
 })
 export class TodosModule { }
