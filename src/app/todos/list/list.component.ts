@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Todo } from '../model/todo';
 
 @Component({
   selector: 'todos-list',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
+  public todos: Todo[];
+
   constructor() { }
 
   ngOnInit() {
+    this.todos = [
+      {
+        id: 1,
+        title: 'TypeScript',
+        completed: true
+      },
+      {
+        id: 2,
+        title: 'Bindings',
+        completed: false
+      }
+    ];
   }
 
 }

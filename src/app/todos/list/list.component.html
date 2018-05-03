@@ -1,4 +1,3 @@
 <ul class="todo-list">
-  <todos-item></todos-item>
-  <todos-item></todos-item>
+  <todos-item *ngFor="let t of todos" [todo]="t"></todos-item>
 </ul>

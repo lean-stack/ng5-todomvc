@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Todo } from '../model/todo';
 
 @Component({
@@ -9,18 +9,16 @@ import { Todo } from '../model/todo';
 export class ItemComponent implements OnInit {
 
   // Properties to render
+  @Input()
   public todo: Todo;
+
   public editMode = false;
   public editText: string;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
-    this.todo = {
-      id: 1,
-      title: 'Bindings',
-      completed: false
-    };
     this.editText = this.todo.title;
   }
 
