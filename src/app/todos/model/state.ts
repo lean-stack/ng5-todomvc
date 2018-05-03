@@ -18,4 +18,8 @@ export class State {
       return count;
     }, 0);
   }
+
+  get hasCompleted(): boolean {
+    return this.todos.findIndex( t => t.completed ) !== -1;
+  }
 }

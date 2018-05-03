@@ -1,4 +1,3 @@
-<!-- This footer should hidden by default and shown when there are todos -->
 <footer class="footer" *ngIf="state.hasTodos">
   <!-- This should be `0 items left` by default -->
   <span class="todo-count">
@@ -9,12 +8,11 @@
       <a class="selected" href="#/">All</a>
     </li>
     <li>
-      <a href="#/active">Active</a>
+        <a href="#/active">Active</a>
     </li>
     <li>
       <a href="#/completed">Completed</a>
     </li>
   </ul>
-  <!-- Hidden if no completed items are left ↓ -->
-  <button class="clear-completed">Clear completed</button>
+  <button [class.hidden]="!state.hasCompleted" class="clear-completed">Clear completed</button>
 </footer>
