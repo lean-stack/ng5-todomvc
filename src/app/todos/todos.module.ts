@@ -11,6 +11,16 @@ import { ItemComponent } from './item/item.component';
   imports: [
     CommonModule
   ],
-  declarations: [RootComponent, HeaderComponent, MainComponent, FooterComponent, ListComponent, ItemComponent]
+  declarations: [
+    RootComponent,
+    HeaderComponent,
+    MainComponent,
+    FooterComponent,
+    ListComponent,
+    ItemComponent
+  ],
+  exports: [
+    RootComponent
+  ]
 })
 export class TodosModule { }
