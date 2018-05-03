@@ -1,3 +1,6 @@
 <ul class="todo-list">
-  <todos-item *ngFor="let t of todos" [todo]="t"></todos-item>
+  <todos-item *ngFor="let t of todos"
+    [todo]="t"
+    (remove)="removeTodo(t)"
+  ></todos-item>
 </ul>
