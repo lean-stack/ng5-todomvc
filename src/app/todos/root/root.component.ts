@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { State } from '../model/state';
 
 @Component({
   selector: 'todos-root',
@@ -11,6 +12,8 @@ export class RootComponent implements OnInit {
   public authorName = 'Micha Alt';
   public authorUrl = 'https://lean-stack.de';
 
+  public state: State;
+
   // Methods to trigger from template
   doNotNavigate(ev: MouseEvent) {
     ev.preventDefault();
@@ -20,5 +23,18 @@ export class RootComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.state = new State();
+    this.state.todos = [
+      {
+        id: 1,
+        title: 'TypeScript',
+        completed: true
+      },
+      {
+        id: 2,
+        title: 'Bindings',
+        completed: false
+      }
+    ];
   }
 }

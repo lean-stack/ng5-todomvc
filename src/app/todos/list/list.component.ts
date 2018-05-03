@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Todo } from '../model/todo';
 
 @Component({
@@ -8,23 +8,12 @@ import { Todo } from '../model/todo';
 })
 export class ListComponent implements OnInit {
 
+  @Input()
   public todos: Todo[];
 
   constructor() { }
 
   ngOnInit() {
-    this.todos = [
-      {
-        id: 1,
-        title: 'TypeScript',
-        completed: true
-      },
-      {
-        id: 2,
-        title: 'Bindings',
-        completed: false
-      }
-    ];
   }
 
   removeTodo(todo: Todo) {
