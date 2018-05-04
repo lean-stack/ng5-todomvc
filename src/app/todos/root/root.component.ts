@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { State } from '../model/state';
+import { StateService } from '../service/state.service';
 
 @Component({
   selector: 'todos-root',
@@ -12,7 +13,7 @@ export class RootComponent implements OnInit {
   public authorName = 'Micha Alt';
   public authorUrl = 'https://lean-stack.de';
 
-  public state: State;
+  public state: State = new State();
 
   private lastId = 0;
 
@@ -22,18 +23,15 @@ export class RootComponent implements OnInit {
     return false;
   }
 
-  constructor() { }
+  constructor(private stateService: StateService) { }
 
   ngOnInit() {
-    this.state = new State();
+    this.stateService.state.subscribe( state => {
+        this.state = state;
+    });
   }
 
-
   createTodo(title: string) {
-    this.state.todos.push({
-      id: ++this.lastId,
-      title: title,
-      completed: false
-    });
+    this.stateService.create(title);
   }
 }

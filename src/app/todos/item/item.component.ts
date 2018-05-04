@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Todo } from '../model/todo';
+import { StateService } from '../service/state.service';
 
 @Component({
   selector: 'todos-item',
@@ -19,7 +20,7 @@ export class ItemComponent implements OnInit {
   @Output()
   public remove = new EventEmitter<Todo>();
 
-  constructor() {
+  constructor(private stateService: StateService) {
   }
 
   ngOnInit() {
@@ -33,7 +34,7 @@ export class ItemComponent implements OnInit {
   }
   toggleItemState() {
     // Todo: notify someone ...
-    console.log('Toggling state');
+    this.stateService.update(this.todo);
   }
 
   enterEditMode() {
@@ -44,6 +45,7 @@ export class ItemComponent implements OnInit {
     this.editMode = false;
     this.todo.title = this.editText;
     // Todo: notify someone ...
+    this.stateService.update(this.todo);
   }
 
   cancelEdit() {
