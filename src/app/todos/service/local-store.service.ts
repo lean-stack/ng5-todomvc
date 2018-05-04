@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { StoreService } from './store-service';
 import { Todo } from '../model/todo';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class LocalStoreService extends StoreService {
@@ -68,5 +71,45 @@ export class LocalStoreService extends StoreService {
   private saveData(data: { todos, lastId }) {
     localStorage['todos'] = JSON.stringify(data.todos);
     localStorage['lastId'] = data.lastId;
+  }
+
+  // History of JavaScript asynchron
+  getAllSync(): Todo[] {
+    // return JSON.parse(localStorage['todos']);
+    return this.loadData().todos;
+  }
+
+  // ES 5
+  getAllCallback(cb): void {
+    setTimeout(() => {
+      const todos = this.loadData().todos;
+      cb(todos);
+    }, 5000);
+  }
+  // ES 6, ES 2015
+  getAllPromise(): Promise<Todo[]> {
+    return new Promise<Todo[]>( (resolve, reject) => {
+      resolve(this.loadData().todos);
+    });
+  }
+  // ES 8, ES 2017
+  async getAllAsync(): Promise<Todo[]> {
+    return new Promise<Todo[]>( (resolve, reject) => {
+      resolve(this.loadData().todos);
+    });
+  }
+  // RxJS
+  getAllRx(): Observable<Todo[]> {
+    // const todos$ = new BehaviorSubject<Todo[]>(
+    //   this.loadData().todos
+    // );
+    const todos$ = new Subject<Todo[]>();
+    setTimeout( () => {
+      todos$.next(this.loadData().todos);
+    }, 1000);
+    return todos$.asObservable();
+  }
+  getAllKonsument() {
+    this.getAllRx().subscribe( todos => {});
   }
 }
