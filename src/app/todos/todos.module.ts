@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ListComponent } from './list/list.component';
 import { ItemComponent } from './item/item.component';
 import { LocalStoreService } from './service/local-store.service';
+import { StateService } from './service/state.service';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { LocalStoreService } from './service/local-store.service';
     RootComponent
   ],
   providers: [
-    LocalStoreService
+    LocalStoreService,
+    StateService
   ]
 })
 export class TodosModule { }
