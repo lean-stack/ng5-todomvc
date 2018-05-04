@@ -39,14 +39,14 @@ export class StateService {
   async remove(id: number) {
     const deletedTodo = await this.store.remove(id);
     const ix = this._state.todos.findIndex( t => t.id === id);
-    this._state.todos.slice(ix, 1);
+    this._state.todos.splice(ix, 1);
   }
 
   async clearCompleted() {
     const deletedTodos = await this.store.clearCompleted();
     deletedTodos.forEach( (todo) => {
       const ix = this._state.todos.findIndex( t => t.id === todo.id);
-      this._state.todos.slice(ix, 1);
+      this._state.todos.splice(ix, 1);
     });
   }
 }
