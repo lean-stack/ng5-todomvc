@@ -1,7 +1,10 @@
 <footer class="footer" *ngIf="state.hasTodos">
   <!-- This should be `0 items left` by default -->
   <span class="todo-count">
-    <strong>{{ state.activeCount }}</strong> item left</span>
+    <strong>{{ state.activeCount }}</strong>
+    {{ state.activeCount | itemPlural:'todo' }}
+    left
+  </span>
   <!-- Remove this if you don't implement routing -->
   <ul class="filters">
     <li>
@@ -14,5 +17,5 @@
       <a href="#/completed">Completed</a>
     </li>
   </ul>
-  <button [class.hidden]="!state.hasCompleted" class="clear-completed">Clear completed</button>
+  <button (click)="clearCompleted()" [class.hidden]="!state.hasCompleted" class="clear-completed">Clear completed</button>
 </footer>

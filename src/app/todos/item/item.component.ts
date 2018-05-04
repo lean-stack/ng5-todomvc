@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ViewChild } from '@angular/core';
 import { Todo } from '../model/todo';
 import { StateService } from '../service/state.service';
 
@@ -16,6 +16,9 @@ export class ItemComponent implements OnInit {
   public editMode = false;
   public editText: string;
 
+  @ViewChild('txtField')
+  public txtField: any;
+
   // Events
   @Output()
   public remove = new EventEmitter<Todo>();
@@ -25,6 +28,7 @@ export class ItemComponent implements OnInit {
 
   ngOnInit() {
     this.editText = this.todo.title;
+    console.log(this.txtField);
   }
 
   deleteItem() {
@@ -39,6 +43,10 @@ export class ItemComponent implements OnInit {
 
   enterEditMode() {
     this.editMode = true;
+    // setTimeout( () => {
+    //   this.txtField.nativeElement.focus();
+    // }, 0);
+
   }
 
   commitEdit() {

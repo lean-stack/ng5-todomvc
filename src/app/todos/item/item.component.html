@@ -7,10 +7,11 @@
     <label (dblclick)="enterEditMode()">{{ todo.title }}</label>
     <button (click)="deleteItem()" class="destroy"></button>
   </div>
-  <input class="edit"
+  <input #txtField class="edit"
     [(ngModel)]="editText"
     (blur)="commitEdit()"
     (keyup.enter)="commitEdit()"
     (keyup.escape)="cancelEdit()"
+    [focusOn]="editMode"
   >
 </li>

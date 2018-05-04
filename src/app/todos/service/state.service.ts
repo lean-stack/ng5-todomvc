@@ -4,6 +4,7 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { State } from '../model/state';
 import { Observable } from 'rxjs/Observable';
 import { Todo } from '../model/todo';
+import { HttpStoreService } from './http-store.service';
 
 @Injectable()
 export class StateService {
@@ -11,7 +12,7 @@ export class StateService {
   private _state: State;
   private state$: ReplaySubject<State>;
 
-  constructor(private store: LocalStoreService) {
+  constructor(private store: HttpStoreService) {
     this.state$ = new ReplaySubject(1);
 
     this._state = new State();

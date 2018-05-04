@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { State } from '../model/state';
+import { StateService } from '../service/state.service';
 
 @Component({
   selector: 'todos-footer',
@@ -11,9 +12,12 @@ export class FooterComponent implements OnInit {
   @Input()
   public state: State;
 
-  constructor() { }
+  constructor(private stateService: StateService) { }
 
   ngOnInit() {
   }
 
+  clearCompleted() {
+    this.stateService.clearCompleted();
+  }
 }
