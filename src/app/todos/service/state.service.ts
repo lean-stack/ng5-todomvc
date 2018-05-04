@@ -26,8 +26,11 @@ export class StateService {
   }
 
   async create(title: string) {
-    const todo = await this.store.create(title);
-    this._state.todos.push(todo);
+    this.store.create(title).then( todo => {
+      this._state.todos.push(todo);
+    } );
+    // const todo = await this.store.create(title);
+    // this._state.todos.push(todo);
   }
 
   async update(todo: Todo) {

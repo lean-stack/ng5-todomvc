@@ -11,7 +11,7 @@ export class LocalStoreService extends StoreService {
   async getAll(): Promise<Todo[]> {
     return this.loadData().todos;  // implicitly promisified
   }
-  create(title: string): Promise<Todo> {
+  async create(title: string): Promise<Todo> {
     return new Promise<Todo>( (resolve, reject) => {
       const data = this.loadData();
       const todo = {
@@ -25,7 +25,7 @@ export class LocalStoreService extends StoreService {
     });
   }
 
-  update(todo: Todo): Promise<Todo> {
+  async update(todo: Todo): Promise<Todo> {
     return new Promise<Todo>( (resolve, reject) => {
       const data = this.loadData();
       const todoIndex = data.todos.findIndex( t => t.id === todo.id);
@@ -34,7 +34,7 @@ export class LocalStoreService extends StoreService {
       resolve(todo);
     });
   }
-  remove(id: number): Promise<Todo> {
+  async remove(id: number): Promise<Todo> {
     return new Promise<Todo>( (resolve, reject) => {
       const data = this.loadData();
       const todoIndex = data.todos.findIndex( t => t.id === id);
@@ -44,7 +44,7 @@ export class LocalStoreService extends StoreService {
     });
   }
 
-  clearCompleted(): Promise<Todo[]> {
+  async clearCompleted(): Promise<Todo[]> {
     return new Promise<Todo[]>( (resolve, reject) => {
       const data = this.loadData();
       const deletedTodos: Todo[] = [];
